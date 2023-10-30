@@ -1,0 +1,30 @@
+<h1>List of livres</h1>
+{% set x = 0 %}
+{% if  tablivre is empty%}
+<h1>Tab vide</h1>
+{% else %}
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>ref</th>
+        <th>titre</th>
+        <th>published</th>
+        <th>publicationDate</th>
+    </tr>
+    {% for i in tablivre %}
+        <tr>
+            <td>{{ i.id }}</td>
+            <td> {{ i.ref }}</td>
+            <td>{{ i.titre }}</td>
+            <td> {{ i.published }}</td>
+            <td> {{ i.publicationDate}}</td>
+            <td> <a href="{{ path('livres_details', {'id': livre.id}) }}">Show more +</a></td>
+            {% set  x= x+i.nb_books   %}
+        </tr>
+    {% endfor %}
+</table>
+{% endif %}
+<h3>Nb_livress: {{ tablivre|length }}</h3>
+<h3>Nb_books: {{ x }}</h3>
+<img src="{{ asset('img/symfonylive.jpg') }}"
+     alt="" height="100px" width="100px">
